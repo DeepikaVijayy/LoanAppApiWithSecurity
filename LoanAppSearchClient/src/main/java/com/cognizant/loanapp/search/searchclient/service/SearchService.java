@@ -3,32 +3,32 @@ package com.cognizant.loanapp.search.searchclient.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.cognizant.loanapp.search.searchclient.entity.LoanInformation;
+import com.cognizant.loanapp.search.searchclient.entity.Loan;
 
 public interface SearchService {
 	// get all the loans
-	public Iterable<LoanInformation> findAll();
+	public Iterable<Loan> findAll();
 	
 	// Search by Loan number
-	public Optional<LoanInformation> findById(int loanId);
+	public Optional<Loan> findById(int loanId);
 	
 	// Search by Loan Amount
-	public Optional<List<LoanInformation>> findByAmount(double amount);
+	public Optional<List<Loan>> findByAmount(double amount);
 	
 	// Search by Borrower name
-	public Optional<List<LoanInformation>> findByBorrowerName(String borrowerName);
+	public Optional<List<Loan>> findByBorrowerName(String borrowerName);
 	
 	// Search by Borrower name and loan amount
-	public Optional<List<LoanInformation>> findByBorrowerNameAndAmount(String borrowerName, double amount);
+	public Optional<List<Loan>> findByBorrowerNameAndAmount(String borrowerName, double amount);
 	
 	// Search by loan number and loan amount
-    public Optional<List<LoanInformation>> findByNumberAndAmount(int id, double amount);
+    public Optional<List<Loan>> findByNumberAndAmount(int id, double amount);
     
     // Search by loan number and borrower name
-    public Optional<List<LoanInformation>> findByNumberAndName(int id, String borrowerName);
+    public Optional<List<Loan>> findByNumberAndName(int id, String borrowerName);
 	
 	// Save the Loan Information
-	public LoanInformation save(LoanInformation loanInfo);
+	public Loan save(Loan loanInfo);
 
 
 }

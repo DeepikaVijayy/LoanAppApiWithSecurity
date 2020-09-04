@@ -6,37 +6,39 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.cognizant.loanapp.search.searchclient.entity.LoanInformation;
+import com.cognizant.loanapp.search.searchclient.entity.Loan;
 
 @Repository
-public interface SearchRepository extends CrudRepository<LoanInformation, Integer> {
 
-	public Optional<LoanInformation> findById(int id);
+public interface SearchRepository extends CrudRepository<Loan, Integer> {
+
+	public Optional<Loan> findById(int id);
 	
-	@Query("select L from LoanInformation L where L.loanAmount = :amount")
-	public Optional<List<LoanInformation>> findByAmount(double amount);
+	@Query("select L from Loan L where L.loanAmount = :amount")
+	public Optional<List<Loan>> findByAmount(double amount);
 	
-	@Query("select count(L) from LoanInformation L where L.loanAmount = :amount")
+	@Query("select count(L) from Loan L where L.loanAmount = :amount")
 	public Long countByAmount(double amount);
 	
-	@Query("select L from LoanInformation L inner join BorrowerInformation B "
+	@Query("select L from Loan L inner join BorrowerInformation B "
 			+ " on L.borrower = B.id where B.borrowerName = :borrowerName")
-	public Optional<List<LoanInformation>> findByBorrowerName(String borrowerName);
+	public Optional<List<Loan>> findByBorrowerName(String borrowerName);
 
-	@Query("select L from LoanInformation L inner join BorrowerInformation B "
+	@Query("select L from Loan L inner join BorrowerInformation B "
 			+ " on L.borrower = B.id where B.borrowerName = :borrowerName and L.loanAmount = :amount")
-	public Optional<List<LoanInformation>> findByBorrowerNameAndAmount(String borrowerName, double amount); 
+	public Optional<List<Loan>> findByBorrowerNameAndAmount(String borrowerName, double amount); 
 	
-	@Query("select L from LoanInformation L inner join BorrowerInformation B "
+	@Query("select L from Loan L inner join BorrowerInformation B "
 			+ " on L.borrower = B.id where L.loanId = :id and L.loanAmount = :amount")
-	public Optional<List<LoanInformation>> findByNumberAndAmount(int id, double amount); 
+	public Optional<List<Loan>> findByNumberAndAmount(int id, double amount); 
 	
 	
-	@Query("select L from LoanInformation L inner join BorrowerInformation B "
+	@Query("select L from Loan L inner join BorrowerInformation B "
 			+ " on L.borrower = B.id where B.borrowerName = :borrowerName and L.loanId = :id")
-	public Optional<List<LoanInformation>> findByNumberAndName(int id, String borrowerName); 
+	public Optional<List<Loan>> findByNumberAndName(int id, String borrowerName); 
 	
 	
-	/* public LoanInformation save(LoanInformation loanInfo); */
+	/* public Loan save(Loan loanInfo); */
 }

@@ -30,7 +30,7 @@ public class BorrowerInformation {
 	
 	// mapping to loan info
 	@OneToMany(mappedBy="borrower" , cascade= CascadeType.ALL)
-	private List<LoanInformation> loans;
+	private List<Loan> loans;
 
 	// define getters/ setters
 	public int getId() {
@@ -49,18 +49,18 @@ public class BorrowerInformation {
 		this.borrowerName = borrowerName;
 	}
 
-	public List<LoanInformation> getLoans() {
+	public List<Loan> getLoans() {
 		return loans;
 	}
 
-	public void setLoans(List<LoanInformation> loans) {
+	public void setLoans(List<Loan> loans) {
 		this.loans = loans;
 	}
 
 
 	// method to add/get the loans from the borrower and vice-versa
 
-	public void addLoan(LoanInformation loan) {
+	public void addLoan(Loan loan) {
 		
 		if(loans== null) {
 			loans = new ArrayList<>();

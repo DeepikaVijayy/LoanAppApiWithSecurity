@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cognizant.loanapp.search.searchclient.entity.LoanInformation;
+import com.cognizant.loanapp.search.searchclient.entity.Loan;
 import com.cognizant.loanapp.search.searchclient.exception.LoanNotFoundException;
 import com.cognizant.loanapp.search.searchclient.repository.SearchRepository;
 
@@ -23,13 +23,13 @@ public class SearchServiceImpl implements SearchService {
 
 
 	@Override
-	public Iterable<LoanInformation> findAll() {
+	public Iterable<Loan> findAll() {
 		
 		return searchrepository.findAll();
 	}
 	
 	@Override
-	public Optional<LoanInformation> findById(int loanId) {
+	public Optional<Loan> findById(int loanId) {
 		
 		logger.info("Before find By Id method call");
 		
@@ -37,7 +37,7 @@ public class SearchServiceImpl implements SearchService {
 	}
 
 	@Override
-	public Optional<List<LoanInformation>> findByAmount(double amount) {
+	public Optional<List<Loan>> findByAmount(double amount) {
 		
 		long count = searchrepository.countByAmount(amount);
 		
@@ -48,7 +48,7 @@ public class SearchServiceImpl implements SearchService {
 
 	
 	 @Override 
-	 public Optional<List<LoanInformation>> findByBorrowerName(String borrowerName) {
+	 public Optional<List<Loan>> findByBorrowerName(String borrowerName) {
 		 
 		 logger.info("Before find By borrower name method call" );
 		 
@@ -56,12 +56,12 @@ public class SearchServiceImpl implements SearchService {
 	    }
 
 	@Override
-	public LoanInformation save(LoanInformation loanInfo) {
+	public Loan save(Loan loanInfo) {
 		return searchrepository.save(loanInfo);
 	}
 
 	@Override
-	public Optional<List<LoanInformation>> findByBorrowerNameAndAmount(String borrowerName, double amount) {
+	public Optional<List<Loan>> findByBorrowerNameAndAmount(String borrowerName, double amount) {
 		
 		logger.info("Before find By borrower name and amount method call" );
 		 
@@ -69,13 +69,13 @@ public class SearchServiceImpl implements SearchService {
 	}
 
 	@Override
-	public Optional<List<LoanInformation>> findByNumberAndAmount(int id, double amount) {
+	public Optional<List<Loan>> findByNumberAndAmount(int id, double amount) {
 		
 		return searchrepository.findByNumberAndAmount(id, amount);
 	}
 
 	@Override
-	public Optional<List<LoanInformation>> findByNumberAndName(int id, String borrowerName) {
+	public Optional<List<Loan>> findByNumberAndName(int id, String borrowerName) {
 		
 		return searchrepository.findByNumberAndName(id, borrowerName);
 	}
